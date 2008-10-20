@@ -1,3 +1,9 @@
+# my collection of routines built up while solving problems
+# at projecteuler.net
+# By Paul Gallagher gallagher.paul@gmail.com
+# http://tardate.blogspot.com
+# free to share and use anyhow, anywhere...
+#
 class Integer
 
   # @see project euler #15,20,34
