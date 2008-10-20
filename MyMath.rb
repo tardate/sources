@@ -88,19 +88,19 @@ class Integer
   def prime_series
     t = self
     limit = Math.sqrt(t)
-    @a = (2..t).to_a
+    a = (2..t).to_a
     n = 2
     while (n < limit) do
       x = n*2
       begin
-        @a[x-2]=2
+        a[x-2]=2
         x+=n
       end until (x > t )
       begin
         n+=1
-      end until ( @a[n-2] != 2 )
+      end until ( a[n-2] != 2 )
     end
-    @a.uniq!
+    a.uniq!
   end
 
   # @see project euler #23
@@ -121,17 +121,17 @@ class Integer
   # http://en.wikipedia.org/wiki/Collatz_conjecture
   # @see project euler #14
   def collatz_series
-    @a = Array.new
-    @a << n = self
+    a = Array.new
+    a << n = self
     while n > 1
       if n % 2 == 0
         n /= 2
       else
         n = 3*n + 1
       end
-      @a << n
+      a << n
     end
-    @a  
+    a  
   end
 
   # express integer as an english phrase
@@ -217,11 +217,11 @@ class Array
   # removes numbers from the array that are factors of other elements in the array
   # @see project euler #5
   def remove_factors
-    @a=Array.new
+    a=Array.new
     self.each do | x | 
-      @a << x if 0 == ( self.inject(0) { | memo, y | memo + (x!=y && y%x==0 ? 1 : 0)  } )
+      a << x if 0 == ( self.inject(0) { | memo, y | memo + (x!=y && y%x==0 ? 1 : 0)  } )
     end
-    @a
+    a
   end
 
   # http://utilitymill.com/edit/GCF_and_LCM_Calculator
@@ -274,26 +274,24 @@ class Array
   # @see project euler #24
   def lexicographic_permutation(k)
     k -= 1
-    @s = self.dup
-    n = @s.length
+    s = self.dup
+    n = s.length
     n_less_1_factorial = (n - 1).factorial # compute (n - 1)!
-    
     (1..n-1).each do |j|
       tempj = (k / n_less_1_factorial) % (n + 1 - j)
-
-      @s[j-1..j+tempj-1]=@s[j+tempj-1,1]+@s[j-1..j+tempj-2] unless tempj==0
+      s[j-1..j+tempj-1]=s[j+tempj-1,1]+s[j-1..j+tempj-2] unless tempj==0
       n_less_1_factorial = n_less_1_factorial / (n- j)
     end
-    @s
+    s
   end
   
   # returns ordered array of all the lexicographic permutations of the elements in the array
   # http://en.wikipedia.org/wiki/Permutation#Lexicographical_order_generation
   # @see project euler #24
   def lexicographic_permutations
-    @a=Array.new
-    (1..self.length.factorial).each { |i| @a << self.lexicographic_permutation(i) }
-    @a
+    a=Array.new
+    (1..self.length.factorial).each { |i| a << self.lexicographic_permutation(i) }
+    a
   end
     
 end
@@ -322,12 +320,12 @@ class String
   # @see project euler #35
   def rotations
     s = self
-    @rotations = Array[s]
+    rots = Array[s]
     (1..s.length-1).each do |i|
       s=s[1..s.length-1]+s[0,1]
-      @rotations << s
+      rots << s
     end
-    @rotations
+    rots
   end
     
 end
