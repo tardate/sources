@@ -125,14 +125,15 @@ exit
 CHECK_LDAP_CONFIG
 
 #returns:
-# OID HOST: oid-ais.aozora.lan
+# OID HOST: blah.blah.blah
 #SSO_OID_HOST=
-# OID PORT: 10238
+# OID PORT: 12345
 #SSO_OID_PORT=
 # SSO SERVER DN:
 #SSO_DN=orclApplicationCommonName=ORASSO_SSOSERVER,cn=SSO,cn=Products,cn=OracleContext
 # OID USE SSL: Y
-#SSO_SERVER_PASSWORD=FAFF00152CEB87BA21A4EF3A7BCD495A
+#SSO_SERVER_PASSWORD=SOMETHINGINHEX
+
 SSO_SSL=$(grep "OID USE SSL" $tmpFile | awk 'BEGIN { FS=":" } ; { print $2 }' | sed "s/^\s*//g")
 echo "SSO_SSL=$SSO_SSL"
 SSO_OID_HOST=$(grep "OID HOST" $tmpFile | awk 'BEGIN { FS=":" } ; { print $2 }' | sed "s/^\s*//g")
